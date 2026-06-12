@@ -1,0 +1,6 @@
+{
+  "name": "Radiografía del Corazón",
+  "description": "Un diagnóstico de consejería bíblica matrimonial con experiencia visual cinematic y emocional.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
