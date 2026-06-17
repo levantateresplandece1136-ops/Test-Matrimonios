@@ -132,45 +132,6 @@ export default function App() {
     }));
   };
 
-  const handleAutomaticAccess = () => {
-    const simulatedAnswers: Record<number, number> = {};
-    QUESTIONS.forEach(q => {
-      // Create a nice distribution of scores (from 0 to 4)
-      if (q.id % 7 === 0) {
-        simulatedAnswers[q.id] = 1;
-      } else if (q.id % 6 === 0) {
-        simulatedAnswers[q.id] = 0;
-      } else if (q.id % 5 === 0) {
-        simulatedAnswers[q.id] = 4;
-      } else if (q.id % 3 === 0) {
-        simulatedAnswers[q.id] = 3;
-      } else if (q.id % 2 === 0) {
-        simulatedAnswers[q.id] = 2;
-      } else {
-        simulatedAnswers[q.id] = 3;
-      }
-    });
-
-    setState(prev => ({
-      ...prev,
-      name: prev.name.trim() || "Andrés Maldonado (Ejemplo)",
-      answers: simulatedAnswers,
-      complaintInput: "mi cónyuge se abriera más al diálogo reflexivo y tomara iniciativa espiritual",
-      complaintTextarea: "Solemos repetir un patrón cíclico de distanciamiento silencioso ante desacuerdos cotidianos, donde yo reacciono exigiendo comunicación y mi cónyuge se repliega aún más sobre sí mismo.",
-      writeAnswers: [
-        "Deseo profundamente que comparta sus pensamientos de manera libre y espontánea, y que asuma un rol activo en la edificación espiritual de nuestro hogar.",
-        "Mi cónyuge señalaría que me irrito muy rápido, que exijo cosas con un tono fiscalizador y que rara vez demuestro gratitud por sus esfuerzos genuinos.",
-        "El distanciamiento total e irreconciliable de nuestros mundos interiores, terminando el matrimonio bajo una indiferencia resignada.",
-        "Identificar el orgullo que me hace querer tener la razón siempre, aprender a amar de forma sacrificial sin condicionar mi gozo espiritual al comportamiento de mi cónyuge.",
-        "Comprender mejor los anhelos idólatras de mi corazón, recibir herramientas prácticas para restaurar el diálogo sano y caminar en reconciliación sabia."
-      ],
-      currentScreen: 7, // Jump directly to results
-      currentWriteQuestionIndex: 0
-    }));
-
-    showToast("¡Acceso Automático de Prueba Activo! Diagnóstico completado exitosamente.");
-  };
-
   const selectAnswer = (questionId: number, value: number) => {
     setState(prev => ({
       ...prev,
@@ -913,25 +874,14 @@ export default function App() {
               </span>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-lg mx-auto">
-              <button 
-                id="start-diagnostic-btn"
-                onClick={handleStart} 
-                className="btn-cinema w-full sm:w-auto"
-              >
-                Comenzar mi diagnóstico
-                <ArrowRight className="w-4 h-4" />
-              </button>
-
-              <button 
-                id="auto-access-btn"
-                onClick={handleAutomaticAccess} 
-                className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 border border-dashed border-[#C9A96E]/50 rounded-md text-xs tracking-widest uppercase font-semibold text-[#C9A96E] bg-white hover:bg-[#C9A96E]/5 active:scale-[0.98] transition-all duration-300 shadow-sm cursor-pointer"
-              >
-                <Sparkles className="w-4 h-4 text-[#C9A96E]" />
-                Acceso Automático (Demo)
-              </button>
-            </div>
+            <button 
+              id="start-diagnostic-btn"
+              onClick={handleStart} 
+              className="btn-cinema"
+            >
+              Comenzar mi diagnóstico
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
         )}
 
