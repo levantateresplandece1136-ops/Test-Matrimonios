@@ -165,17 +165,10 @@ export default function App() {
 
   const handleNextPart = () => {
     const part = state.currentScreen;
-    // Special validation for part 2: also check the "Si tan solo" text field (not blocking but nice to alert or validate)
-    const { isCompleted, answeredInPart, requiredAnswers } = getProgressInfo(part);
+    const { isCompleted } = getProgressInfo(part);
 
     if (!isCompleted) {
-      showToast(`Por favor responde al menos la mayoría de las preguntas (${answeredInPart}/${requiredAnswers} completadas) para continuar.`);
-      return;
-    }
-
-    if (part === 2 && !state.complaintInput.trim()) {
-      showToast("Tómate un instante para completar la frase de arriba antes de continuar.");
-      return;
+      showToast("Nota: Avanzando libremente. Completar más preguntas te dará un diagnóstico más preciso.");
     }
 
     setState(prev => ({
@@ -202,8 +195,7 @@ export default function App() {
 
   const handleNextWriteQuestion = () => {
     if (!state.writeAnswers[state.currentWriteQuestionIndex].trim()) {
-      showToast("Escribe una respuesta sincera para poder reflexionar y avanzar.");
-      return;
+      showToast("Nota: Avanzando libremente. Puedes responder o continuar cuando gustes.");
     }
 
     if (state.currentWriteQuestionIndex < WRITING_QUESTIONS.length - 1) {
